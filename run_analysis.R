@@ -10,5 +10,3 @@ tidyData <- cbind(makeID(),
                   makeTBodyAcc(),
                   makeAngVelocity(),
                   makeFeatures())
-                  
-              
