@@ -1,0 +1,62 @@
+---
+title: "codebook"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#functions.R
+
+##makeID()
+row binds the train and test subject ID's into one data frame with the column name set as 'SubjectID'
+
+##makeAvtivity()
+row binds the train and test set for activities and then uses activity_labels as a key to turn the activities column from a vector of numbers to a vector of activity descriptive strings
+
+##makeTAcc()
+row binds the train and test set for total_acc_x/y/z and then combines the row averages and row standard deviations for x, y, and z into a data frame that contains 6 columns (the average and standard deviation for the total acceleration in the x y and z direction)
+
+##makeTBodyAcc()
+row binds the train and test set for body_acc_x/y/z and then combines the row averages and row standard deviations for x, y, and z into a data frame that contains 6 columns (the average and standard deviation for the total body acceleration in the x y and z direction)
+
+##makeAngVelocity()
+makeAngVelocity() row binds the train and test set for body_gyro_x/y/z and then combines the row averages and row standard deviations for x, y, and z into a data frame that contains 6 columns (the average and standard deviation for the angular velocity in the x y and z direction)
+
+##makeFeatures()
+creates a vector that contains all the 'features' found in 'features.txt' (more info can be found in 'features_info.txt) and then it uses the features vector to name the columns of the row bound X train and test data
+
+
+#tidyData
+
+##columns
+
+###1. SubjectID
+The subjects ID is stored in this column. The column was created using the makeID() function and was created using subject_train.txt and subject_test.txt. For info on the purpose of the subject ID and subject_train.txt, check the datasets readme.
+
+###2. Activity
+The activities the subjects performed are stored in this column. The column was created using makeActivity() and uses y_train.txt and y_test.txt then uses activity_labels.txt as a map and key to change the activities from numbers to words. For info on the activities performed by the subjects and activity_labels.txt, check the datasets readme.
+
+###3-5. AvgTAcc/XYZ
+These columns contain the average total acceleration in the x, y, and z direction. The columns were created using makeTAcc() and uses data from total_acc_(x,y,z)_(test,train).txt. For more info on the calculation and use of the total acceleration and the data, check the datasets readme and features_info.txt. (units "g")
+
+###6-8. SdTAcc/XYZ
+These columns contain the standard deviation of the total acceleration in the x, y, and z direction. The columns were created using makeTAcc() and uses data from total_acc_(x,y,z)_(test,train).txt. The standard deviation is not provided in the dataset and is calculated in "makeTAcc()".
+
+###9-11. AvgTBodyAccl/XYZ
+These columns contain the average total body acceleration in the x, y, and z direction. The columns were created using makeTBodyAcc() and uses data from body_acc_(x,y,z)_(test,train).txt. For more info on the calculation and use of the total body accelartion and the data, check the datasets readme and features_info.txt. (units "g")
+
+###12-14. SdTBodyAcc/XYZ
+These columns contain the standard deviation of the total body acceleration in the x, y, and z direction. The columns were created using makeTBodyAcc() and uses data from body_acc_(x,y,z)_(test,train).tx. The standard deviation is not provided in the dataset and is calculated in "makeTBodyAcc()".
+
+###15-17. AvgAngVel/XYZ
+These columns contain the average angular velocity in the x, y, and z direction. The columns were created using makeAngVelocity() and uses data from body_gyro_(x,y,z)_(test,train).txt. For more info on the calculation and use of the angular velocity and the data, check the datasets readme and features_info.txt. (units "rad/sec")
+
+###18-20. SdAngVel/XYZ
+These columns contain the standard deviation of the angular velocity in the x, y, and z direction. The columns were created using makeAngVelocity() and uses data from body_gyro_(x,y,z)_(test,train).txt. The standard deviation is not provided in the dataset and is calculated in "makeAngVelocity()".
+
+###21-581. features.txt
+These columns are named by features.txt and are paired with the X_(train, test).txt data sets. More info about the x data sets and the different features, check features_info.txt and the datasets readme.
+
+
